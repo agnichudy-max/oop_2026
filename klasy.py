@@ -1,3 +1,5 @@
+import random
+
 # Klasa = Szablon, Przepis
 class Czlowiek:
     # Istota
@@ -15,8 +17,8 @@ class Czlowiek:
         # adam.imie = "Adam"
         # ewa.imie = "Ewa"
     def __add__(self, other):
-        pass
-
+        if isinstance(other, Czlowiek) and self.plec != other.plec:
+            return Dziecko(None, random.choice(("M", "K")))
 
     # Metoda
     # Możność (możliwość), zdolność, umiejętność
@@ -31,6 +33,11 @@ class Czlowiek:
         print(f"Oto {osoba.imie}")
 
 class Dziecko(Czlowiek):
+    def __str__(self, imie, plec):
+        print(f"Powstaje Dziecko o imieniu {imie}")
+        super().__init__(imie, plec)
+
+
     def __str__(self):
         if self.plec=="M":
             return f"chlopiec {self.imie}"
@@ -46,6 +53,9 @@ class Dziecko(Czlowiek):
             print("chłopcem")
         else:
             print("dziewczynką")
+
+#kain = adam + ewa
+
 
 # Powstawanie obiektu (Instancji klasy Czlowiek)
 # (Gotowanie z przepisu)
@@ -63,3 +73,5 @@ print(dir(kain))
 print(kain)
 print(adam)
 print(ewa)
+dziecko = adam + ewa
+print(dziecko)
